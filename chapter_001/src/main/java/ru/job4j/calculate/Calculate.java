@@ -2,7 +2,7 @@ package ru.job4j.calculate;
 
 /**
  * Класс для вывода приветствия в консоль
- * @author anna
+ * @author anna brik
  * @since 29.09.18
  * @version 1
  */
