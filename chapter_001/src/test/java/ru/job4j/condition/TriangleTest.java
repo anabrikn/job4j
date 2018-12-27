@@ -37,4 +37,15 @@ public class TriangleTest {
         double expected = -1;
         assertThat(result, closeTo(expected, 0.1));
     }
+
+    @Test
+    public void whenAreaSetThreePointsInOneLine() {
+        Point a = new Point(0, 0);
+        Point b = new Point(2, 0);
+        Point c = new Point(6, 0);
+        Triangle triangle = new Triangle(a, b, c);
+        double result = triangle.area();
+        double expected = -1;
+        assertThat(result, closeTo(expected, 0.1));
+    }
 }
