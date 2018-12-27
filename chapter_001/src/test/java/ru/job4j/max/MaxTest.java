@@ -46,17 +46,17 @@ public class MaxTest {
     }
 
     @Test
-    public void whenSecondFirstMoreFirstAndThird() {
-        Max maximum = new Max();
-        int result = maximum.max(4, 5, 1);
-        assertThat(result, is(5));
-    }
-
-    @Test
     public void whenFirstEqualsSecondAndThird() {
         Max maximum = new Max();
         int result = maximum.max(1, 1, 1);
         assertThat(result, is(1));
+    }
+
+    @Test
+    public void whenSecondFirstMoreFirstAndThird() {
+        Max maximum = new Max();
+        int result = maximum.max(4, 5, 1);
+        assertThat(result, is(5));
     }
 }
 
