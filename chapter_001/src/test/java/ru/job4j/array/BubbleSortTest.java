@@ -5,6 +5,12 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author anna brik
+ * @version 1
+ * @since 03.01.19
+ */
+
 public class BubbleSortTest {
     @Test
     public void whenSortArrayWithTenElementsThenSortedArray() {
