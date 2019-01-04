@@ -16,15 +16,13 @@ public class MatrixCheck {
         boolean diagonal1 = true;
         boolean diagonal2 = true;
 
-        for (int i = data.length - 1, j = data.length - 1; i > 0; i--, j--) {
-            if (data[i][j] != data[i - 1][j - 1]) {
+        for (int i1 = data.length - 1, i2 = 0, j = data.length - 1; i1 > 0; i1--, i2++, j--) {
+            if (data[i1][j] != data[i1 - 1][j - 1]) {
                 diagonal1 = false;
                 break;
             }
-        }
 
-        for (int i = 0, j = data[0].length - 1; j > 0; i++, j--) {
-            if (data[i][j] != data[i + 1][j - 1]) {
+            if (data[i2][j] != data[i2 + 1][j - 1]) {
                 diagonal2 = false;
                 break;
             }
