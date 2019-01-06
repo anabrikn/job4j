@@ -75,7 +75,7 @@ public class Logic {
             for (int j = 0; j < table.length; j++) {
                 row = row + table[i][j];
                 column = column + table[j][i];
-                if (row == 5 || column == 5) {
+                if (row == table.length || column == table.length) {
                     result = true;
                     break;
                 }
