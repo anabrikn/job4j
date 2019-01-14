@@ -14,14 +14,12 @@ public class Max {
     public int max(int first, int second) {
         return first > second ? first : second;
     }
-
     /**
      * @param first первое число.
      * @param second первое число.
      * @param third третье число.
      * @return максимальное из трех переданных чисел.
      */
-
     public int max(int first, int second, int third) {
         return this.max(this.max(first, second), third);
     }

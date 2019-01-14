@@ -10,7 +10,6 @@ public class Square {
      * @param bound длина массива, число, до которого производить возведение в степень.
      * @return массив чисел-результатов возведения в степень.
      */
-
     public int[] calculate(int bound) {
         int[] rst = new int[bound];
         for (int index = 0, i = 1; index < rst.length; index++, i++) {
