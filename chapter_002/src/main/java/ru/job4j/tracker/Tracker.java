@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class Tracker {
     private Item[] items = new Item[100];
-    int position = 0;
+    private int position = 0;
 
     private static final Random RN = new Random(System.currentTimeMillis());
     /**
