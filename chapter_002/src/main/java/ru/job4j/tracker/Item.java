@@ -82,4 +82,11 @@ public class Item {
     public int hashCode() {
         return Objects.hash(id, name, desc, time);
     }
+
+    @Override
+    public String toString() {
+        return "ID заявки: " + this.getId() + "Имя заявки:" + this.getName()
+                + "Описание заявки:" + this.getDescription() + "Комментарии к заявке:" + this.getComments()
+                + "Врмя создания заявки:" + this.getTime() + this.hashCode();
+    }
 }
