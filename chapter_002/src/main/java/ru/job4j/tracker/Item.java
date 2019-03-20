@@ -85,8 +85,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return "ID заявки: " + this.getId() + "Имя заявки:" + this.getName()
-                + "Описание заявки:" + this.getDescription() + "Комментарии к заявке:" + this.getComments()
-                + "Врмя создания заявки:" + this.getTime() + this.hashCode();
+        return "ID заявки: " + this.getId() + " Имя заявки: " + this.getName()
+                + " Описание заявки: " + this.getDescription() + " Комментарии к заявке: " + this.getComments()
+                + " Врмя создания заявки: " + this.getTime() + " Hash: "  + this.hashCode();
     }
 }
