@@ -42,7 +42,7 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"0", "test1 name", "desc1",
                                                 "0", "test2 name", "desc2",
                                                 "0", "test3 name", "desc3",
-                                                "3", itemId ,"6"});
+                                                "3", itemId, "6"});
         new StartUI(input, tracker).init();
         assertNull(tracker.findById(itemId));
     }
@@ -53,7 +53,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc", 1));
         Input input = new StubInput(new String[]{"0", "test1 name", "desc1",
                 "0", "test2 name", "desc2",
-                "4", item.getId() ,"6"});
+                "4", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()), is(item));
     }
