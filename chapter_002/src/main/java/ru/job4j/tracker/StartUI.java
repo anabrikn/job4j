@@ -62,7 +62,7 @@ public class StartUI {
      * Метод реализует добавление новый заявки в хранилище.
      */
     private void createItem() {
-        System.out.println("------------ Добавление новой заявки --------------");
+        System.out.print("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc, System.currentTimeMillis());
@@ -74,14 +74,14 @@ public class StartUI {
      * Метод выводит все заявки не экран.
      */
     private void findAll() {
-        System.out.println("Вывод всех заявок.");
+        System.out.print("Вывод всех заявок.\n");
         Item[] allItems = tracker.findAll();
         if (allItems.length != 0) {
             for (Item item: allItems) {
-                System.out.println(item.toString());
+                System.out.print(item.toString() + "\n");
             }
         } else {
-            System.out.println("Заявок в трекере нет.");
+            System.out.print("Заявок в трекере нет.\n");
         }
     }
 
@@ -144,14 +144,23 @@ public class StartUI {
      * Метод выводит меню в консоль.
      */
     private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println("0. Add new Item\n"
-                            + "1. Show all items\n"
-                            + "2. Edit item\n"
-                            + "3. Delete item\n"
-                            + "4. Find item by Id\n"
-                            + "5. Find items by name\n"
-                            + "6. Exit Program");
+        System.out.print(new StringBuilder()
+                            .append("Меню.")
+                            .append("\n")
+                            .append("0. Add new Item")
+                            .append("\n")
+                            .append("1. Show all items")
+                            .append("\n")
+                            .append("2. Edit item")
+                            .append("\n")
+                            .append("3. Delete item")
+                            .append("\n")
+                            .append("4. Find item by Id")
+                            .append("\n")
+                            .append("5. Find items by name")
+                            .append("\n")
+                            .append("6. Exit Program")
+                            .append("\n"));
     }
 
     /**

@@ -1,24 +1,43 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import org.junit.After;
+import org.junit.Before;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 /**
  * @author anna brik
  * @version 1
  * @since 20.03.19
  */
-/*
-1. Вам необходимо добавить несколько тестовых методов проверяющие вывод на экран результаты действий пользователя.
-Например. Пользователь выбрал пункт меню - Показать все заявки.
-2. В тесте надо использовать аналогичный подход из задания 5. Рефакторинг теста @Before @After
- */
+
 public class StartUITest {
+    private Tracker tracker;
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void beforeTest() {
+        System.out.println("execute before method");
+        tracker = new Tracker(); // создаём Tracker
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void afterTest() {
+        System.setOut(this.stdout);
+        System.out.println("execute after method");
+    }
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
@@ -27,8 +46,6 @@ public class StartUITest {
 
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
-        // создаём Tracker
-        Tracker tracker = new Tracker();
         //Напрямую добавляем заявку
         Item item = tracker.add(new Item("test name", "desc", 6));
         //создаём StubInput с последовательностью действий(производим замену заявки)
@@ -41,7 +58,6 @@ public class StartUITest {
 
     @Test
     public void whenUserDeleteItemItIsNotFound() {
-        Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 1));
         String itemId = item.getId();
         Input input = new StubInput(new String[]{"0", "test1 name", "desc1",
@@ -54,12 +70,46 @@ public class StartUITest {
 
     @Test
     public void whenUserFindItemByIdIfItemIsFoundItIsPrintToConsole() {
-        Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 1));
         Input input = new StubInput(new String[]{"0", "test1 name", "desc1",
                 "0", "test2 name", "desc2",
                 "4", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()), is(item));
+    }
+
+    @Test
+    public void whenUserAddItemAndFind() {
+        Item item = tracker.add(new Item("test name", "desc", 6));
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUI(input, tracker).init();
+        assertThat(
+                new String(out.toByteArray()),
+                Is.is(
+                        new StringBuilder()
+                                .append("Меню.\n")
+                                .append("0. Add new Item\n")
+                                .append("1. Show all items\n")
+                                .append("2. Edit item\n")
+                                .append("3. Delete item\n")
+                                .append("4. Find item by Id\n")
+                                .append("5. Find items by name\n")
+                                .append("6. Exit Program\n")
+                                .append("Вывод всех заявок.\n")
+                                .append("ID заявки: " + item.getId() + " Имя заявки: " + item.getName()
+                                        + " Описание заявки: " + item.getDescription() + " Комментарии к заявке: " + item.getComments()
+                                        + " Врмя создания заявки: " + item.getTime() + " Hash: "  + item.hashCode())
+                                .append("\n")
+                                .append("Меню.\n")
+                                .append("0. Add new Item\n")
+                                .append("1. Show all items\n")
+                                .append("2. Edit item\n")
+                                .append("3. Delete item\n")
+                                .append("4. Find item by Id\n")
+                                .append("5. Find items by name\n")
+                                .append("6. Exit Program\n")
+                                .toString()
+                )
+        );
     }
 }
