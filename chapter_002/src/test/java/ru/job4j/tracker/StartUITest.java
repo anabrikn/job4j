@@ -10,6 +10,11 @@ import static org.junit.Assert.assertThat;
  * @version 1
  * @since 20.03.19
  */
+/*
+1. Вам необходимо добавить несколько тестовых методов проверяющие вывод на экран результаты действий пользователя.
+Например. Пользователь выбрал пункт меню - Показать все заявки.
+2. В тесте надо использовать аналогичный подход из задания 5. Рефакторинг теста @Before @After
+ */
 public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {

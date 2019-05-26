@@ -47,8 +47,6 @@ public class PaintTest {
                                 .toString()
                 )
         );
-        // возвращаем обратно стандартный вывод в консоль.
-        System.setOut(stdout);
     }
 
     @Test
@@ -69,6 +67,5 @@ public class PaintTest {
                                 .toString()
                 )
         );
-        System.setOut(stdout);
     }
 }
