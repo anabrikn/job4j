@@ -22,6 +22,24 @@ public class StartUITest {
     private Tracker tracker;
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private static final String MENU = new StringBuilder()
+            .append("Меню.")
+            .append(System.lineSeparator())
+            .append("0. Add new Item")
+            .append(System.lineSeparator())
+            .append("1. Show all items")
+            .append(System.lineSeparator())
+            .append("2. Edit item")
+            .append(System.lineSeparator())
+            .append("3. Delete item")
+            .append(System.lineSeparator())
+            .append("4. Find item by Id")
+            .append(System.lineSeparator())
+            .append("5. Find items by name")
+            .append(System.lineSeparator())
+            .append("6. Exit Program")
+            .append(System.lineSeparator())
+            .toString();
 
     @Before
     public void beforeTest() {
@@ -79,7 +97,7 @@ public class StartUITest {
     }
 
     @Test
-    public void whenUserAddItemAndFind() {
+    public void whenUserAddItemAndFound() {
         Item item = tracker.add(new Item("test name", "desc", 6));
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
@@ -87,15 +105,9 @@ public class StartUITest {
                 new String(out.toByteArray()),
                 Is.is(
                         new StringBuilder()
-                                .append("Меню.\n")
-                                .append("0. Add new Item\n")
-                                .append("1. Show all items\n")
-                                .append("2. Edit item\n")
-                                .append("3. Delete item\n")
-                                .append("4. Find item by Id\n")
-                                .append("5. Find items by name\n")
-                                .append("6. Exit Program\n")
-                                .append("Вывод всех заявок.\n")
+                                .append(MENU)
+                                .append("Вывод всех заявок.")
+                                .append(System.lineSeparator())
                                 .append("ID заявки: ")
                                 .append(item.getId())
                                 .append(" Имя заявки: ")
@@ -108,15 +120,42 @@ public class StartUITest {
                                 .append(item.getTime())
                                 .append(" Hash: ")
                                 .append(item.hashCode())
-                                .append("\n")
-                                .append("Меню.\n")
-                                .append("0. Add new Item\n")
-                                .append("1. Show all items\n")
-                                .append("2. Edit item\n")
-                                .append("3. Delete item\n")
-                                .append("4. Find item by Id\n")
-                                .append("5. Find items by name\n")
-                                .append("6. Exit Program\n")
+                                .append(System.lineSeparator())
+                                .append(MENU)
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenFindItemsByName() {
+        Item item1 = tracker.add(new Item("test1", "desc1", 6));
+        Item item2 = tracker.add(new Item("test2", "desc2", 6));
+        Item item3 = tracker.add(new Item("test3", "desc3", 6));
+        Input input = new StubInput(new String[]{"5", "test2", "6"});
+        new StartUI(input, tracker).init();
+
+        assertThat(
+                new String(out.toByteArray()),
+                Is.is(
+                        new StringBuilder()
+                                .append(MENU)
+                                .append("Поиск заявки по имени.")
+                                .append(System.lineSeparator())
+                                .append("ID заявки: ")
+                                .append(item2.getId())
+                                .append(" Имя заявки: ")
+                                .append(item2.getName())
+                                .append(" Описание заявки: ")
+                                .append(item2.getDescription())
+                                .append(" Комментарии к заявке: ")
+                                .append(item2.getComments())
+                                .append(" Врмя создания заявки: ")
+                                .append(item2.getTime())
+                                .append(" Hash: ")
+                                .append(item2.hashCode())
+                                .append(System.lineSeparator())
+                                .append(MENU)
                                 .toString()
                 )
         );

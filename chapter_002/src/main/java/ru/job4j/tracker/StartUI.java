@@ -15,6 +15,25 @@ public class StartUI {
     private static final String FINDBYID = "4";
     private static final String FINDBUNAME = "5";
     private static final String EXIT = "6";
+    private static final String MENU = new StringBuilder()
+            .append("Меню.")
+            .append(System.lineSeparator())
+            .append("0. Add new Item")
+            .append(System.lineSeparator())
+            .append("1. Show all items")
+            .append(System.lineSeparator())
+            .append("2. Edit item")
+            .append(System.lineSeparator())
+            .append("3. Delete item")
+            .append(System.lineSeparator())
+            .append("4. Find item by Id")
+            .append(System.lineSeparator())
+            .append("5. Find items by name")
+            .append(System.lineSeparator())
+            .append("6. Exit Program")
+            .append(System.lineSeparator())
+            .toString();
+
 
     /**
      * Поля класса для инициализации.
@@ -74,11 +93,13 @@ public class StartUI {
      * Метод выводит все заявки не экран.
      */
     private void findAll() {
-        System.out.print("Вывод всех заявок.\n");
+        System.out.println("Вывод всех заявок.");
         Item[] allItems = tracker.findAll();
         if (allItems.length != 0) {
             for (Item item: allItems) {
-                System.out.print(item.toString() + "\n");
+                System.out.print(new StringBuilder()
+                        .append(item.toString())
+                        .append(System.lineSeparator()));
             }
         } else {
             System.out.print("Заявок в трекере нет.\n");
@@ -144,23 +165,7 @@ public class StartUI {
      * Метод выводит меню в консоль.
      */
     private void showMenu() {
-        System.out.print(new StringBuilder()
-                            .append("Меню.")
-                            .append("\n")
-                            .append("0. Add new Item")
-                            .append("\n")
-                            .append("1. Show all items")
-                            .append("\n")
-                            .append("2. Edit item")
-                            .append("\n")
-                            .append("3. Delete item")
-                            .append("\n")
-                            .append("4. Find item by Id")
-                            .append("\n")
-                            .append("5. Find items by name")
-                            .append("\n")
-                            .append("6. Exit Program")
-                            .append("\n"));
+        System.out.print(MENU);
     }
 
     /**
