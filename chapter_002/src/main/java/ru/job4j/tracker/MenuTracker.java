@@ -69,9 +69,7 @@ public class MenuTracker {
             Item[] allItems = tracker.findAll();
             if (allItems.length != 0) {
                 for (Item item: allItems) {
-                    System.out.print(new StringBuilder()
-                            .append(item.toString())
-                            .append(System.lineSeparator()));
+                    System.out.print(String.format("%s%s", item.toString(), System.lineSeparator()));
                 }
             } else {
                 System.out.print("Заявок в трекере нет.\n");
