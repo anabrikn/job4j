@@ -10,6 +10,7 @@ public class StartUI {
      */
     private final Input input;
     private final Tracker tracker;
+    // массив значений нужно брать из меню трэкера, это ключи!!!!
 
     /**
      * Конструтор инициализирующий поля.
@@ -26,11 +27,15 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        int[] ranges = new int[menu.getActionsLength()]; //
+        for (int i = 0; i < ranges.length; i++) {
+            ranges[i] = i;
+        }
         menu.fillActions();
         do {
             System.out.println("Меню.");
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", ranges)); //
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
@@ -39,6 +44,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }

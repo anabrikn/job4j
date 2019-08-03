@@ -24,6 +24,10 @@ public class MenuTracker {
         this.actions[5] = new FindItemByName();
     }
 
+    public int getActionsLength() {
+        return actions.length;
+    }
+
     public void select(int key) {
         this.actions[key].execute(this.input, this.tracker);
     }

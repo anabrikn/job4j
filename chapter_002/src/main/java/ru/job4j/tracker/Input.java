@@ -5,5 +5,6 @@ package ru.job4j.tracker;
  * @since 03.03.19
  */
 public interface Input {
-    public String ask(String question);
+    String ask(String question);
+    int ask(String question, int[] range);
 }
