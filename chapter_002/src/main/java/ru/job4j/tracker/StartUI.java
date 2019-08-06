@@ -10,7 +10,6 @@ public class StartUI {
      */
     private final Input input;
     private final Tracker tracker;
-    // массив значений нужно брать из меню трэкера, это ключи!!!!
 
     /**
      * Конструтор инициализирующий поля.
@@ -44,6 +43,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
