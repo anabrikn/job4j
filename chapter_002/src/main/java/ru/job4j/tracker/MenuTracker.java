@@ -16,12 +16,12 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        this.actions[0] = new AddItem();
-        this.actions[1] = new MenuTracker.ShowItems();
-        this.actions[2] = new EditItem();
-        this.actions[3] = new DeleteItem();
-        this.actions[4] = new FindItemById();
-        this.actions[5] = new FindItemByName();
+        this.actions[0] = new AddItem(0, "Add new item.");
+        this.actions[1] = new MenuTracker.ShowItems(1, "Show all items.");
+        this.actions[2] = new EditItem(2, "Edit item.");
+        this.actions[3] = new DeleteItem(3, "Delete item.");
+        this.actions[4] = new FindItemById(4, "Find item by Id.");
+        this.actions[5] = new FindItemByName(5, "Find item by name.");
     }
 
     public int getActionsLength() {
@@ -40,10 +40,9 @@ public class MenuTracker {
         }
     }
 
-    private class AddItem implements UserAction {
-        @Override
-        public int key() {
-            return 0;
+    private class AddItem extends BaseAction {
+        public AddItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -54,17 +53,11 @@ public class MenuTracker {
             long time = System.currentTimeMillis();
             tracker.add(new Item(name, desc, time));
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Add new item.");
-        }
     }
 
-    private static class ShowItems implements UserAction {
-        @Override
-        public int key() {
-            return 1;
+    private static class ShowItems extends BaseAction {
+        public ShowItems(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -79,17 +72,11 @@ public class MenuTracker {
                 System.out.print("Заявок в трекере нет.\n");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Show all items.");
-        }
     }
 
-    private class EditItem implements UserAction {
-        @Override
-        public int key() {
-            return 2;
+    private class EditItem extends BaseAction {
+        public EditItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -104,17 +91,11 @@ public class MenuTracker {
                 System.out.println("Заявка с введенным id не найдена.");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Edit item.");
-        }
     }
 
-    private class DeleteItem implements UserAction {
-        @Override
-        public int key() {
-            return 3;
+    private class DeleteItem extends BaseAction {
+        public DeleteItem(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -126,17 +107,11 @@ public class MenuTracker {
                 System.out.println("Заявка с указанным id не найдена.");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Delete item.");
-        }
     }
 
-    private class FindItemById implements UserAction {
-        @Override
-        public int key() {
-            return 4;
+    private class FindItemById extends BaseAction {
+        public FindItemById(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -149,17 +124,11 @@ public class MenuTracker {
                 System.out.println("Заявка с таким id не найдена");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find item by Id.");
-        }
     }
 
-    private class FindItemByName implements UserAction {
-        @Override
-        public int key() {
-            return 5;
+    private class FindItemByName extends BaseAction {
+        public FindItemByName(int key, String name) {
+            super(key, name);
         }
 
         @Override
@@ -173,11 +142,6 @@ public class MenuTracker {
             } else {
                 System.out.println("Заявок с таким именем не найдено.");
             }
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find item by name.");
         }
     }
 }
