@@ -1,6 +1,10 @@
 package ru.job4j.tracker.singletonTracker;
 import ru.job4j.tracker.Item;
-
+/**
+ * @author anna brik
+ * @version 1
+ * @since 28.09.19
+ */
 public class TrackerSingleLazyLoading {
     private static TrackerSingleLazyLoading instance;
     private TrackerSingleLazyLoading() {

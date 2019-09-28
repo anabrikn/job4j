@@ -3,6 +3,11 @@ package ru.job4j.tracker.singletonTracker;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
+/**
+ * @author anna brik
+ * @version 1
+ * @since 28.09.19
+ */
 
 public class TrackerSingleEnumTest {
     @Test
