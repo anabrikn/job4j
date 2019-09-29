@@ -1,4 +1,4 @@
-package ru.job4j.tracker.singletonTracker;
+package ru.job4j.tracker.singletontracker;
 import ru.job4j.tracker.Item;
 /**
  * @author anna brik
