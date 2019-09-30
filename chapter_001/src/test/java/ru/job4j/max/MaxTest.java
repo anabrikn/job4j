@@ -58,5 +58,12 @@ public class MaxTest {
         int result = maximum.max(4, 5, 1);
         assertThat(result, is(5));
     }
+
+    @Test
+    public void whenNeedCompareFourNumbers() {
+        Max maximum = new Max();
+        int result = maximum.max(4, 5, 2, 3);
+        assertThat(result, is(5));
+    }
 }
 
