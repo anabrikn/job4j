@@ -23,23 +23,4 @@ public class Point {
     public double distance3D(Point that) {
         return Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2) + Math.pow(this.z - that.z, 2));
     }
-
-    public static void main(String[] args) {
-        Point a = new Point(0, 0);
-        Point b = new Point(0, 2);
-        double result = a.distanceTo(b);
-        System.out.println("Расстояние между точками А и Б: " + result);
-
-        Point k = new Point(4, 1, 3);
-        Point n = new Point(6, 2, 5);
-
-        double result3d = k.distance3D(n);
-        System.out.println("Расстояние между точками K и N: " + result3d);
-        /*Point k = new Point(1, 1, 1);
-        Point n = new Point(1, 3, 1);
-
-        double result3d = k.distance3D(n);
-        System.out.println("Расстояние между точками K и N: " + result3d);
-         */
-    }
 }
