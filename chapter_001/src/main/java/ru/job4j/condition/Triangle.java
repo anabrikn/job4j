@@ -29,9 +29,9 @@ public class Triangle {
      */
     public double area() {
         double rsl = -1; // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том. что треугольника нет.
-        double ab = this.a.distanceTo(this.b);
-        double ac = this.a.distanceTo(this.c);
-        double bc = this.b.distanceTo(this.c);
+        double ab = this.a.distance2D(this.b);
+        double ac = this.a.distance2D(this.c);
+        double bc = this.b.distance2D(this.c);
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));

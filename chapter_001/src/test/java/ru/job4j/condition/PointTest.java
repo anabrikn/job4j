@@ -6,6 +6,14 @@ import static org.junit.Assert.assertThat;
 
 public class PointTest {
     @Test
+    public void whenTwoPointIn2DSpace() {
+        Point a = new Point(0, 0);
+        Point b = new Point(0, 2);
+        double result = a.distance2D(b);
+        assertThat(result, is(2.0));
+    }
+
+    @Test
     public void whenPointIn3DSpace() {
         Point k = new Point(4, 1, 3);
         Point n = new Point(6, 2, 5);
