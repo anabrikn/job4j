@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class EngineerTest {
     @Test
     public void engineerTest() {
-        Engineer engineer = new Engineer("Гюстав Эйфель");
+        Engineer engineer = new Engineer("Гюстав Эйфель", "Ктототамович", "хирург", "20.01.1860");
         House construction = new House("Эйфелева башня");
         engineer.build(construction);
 

@@ -12,8 +12,8 @@ import static org.junit.Assert.assertThat;
 public class DoctorTest {
     @Test
     public void doctorTest() {
-        Doctor doctor = new Doctor("Кто");
-        Patient patient = new Patient("Чупакабра", "Головная боль");
+        Doctor doctor = new Doctor("Кто", "Ктототамович", "хирург", "20.01.1860");
+        Patient patient = new Patient("Чупакабра", "Боль в животе");
         doctor.cure(patient);
 
         String result = patient.getSymptoms();

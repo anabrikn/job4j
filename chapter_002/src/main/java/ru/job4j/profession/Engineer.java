@@ -5,8 +5,8 @@ package ru.job4j.profession;
  * @since 01.02.19
  */
 public class Engineer extends Profession {
-    public Engineer(String name) {
-        super(name);
+    public Engineer(String name, String surname, String education, String birthday) {
+        super(name, surname, education, birthday);
     }
 
     /**

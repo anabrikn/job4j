@@ -5,8 +5,8 @@ package ru.job4j.profession;
  * @since 01.02.19
  */
 public class Teacher extends Profession {
-    public Teacher(String name) {
-        super(name);
+    public Teacher(String name, String surname, String education, String birthday) {
+        super(name, surname, education, birthday);
     }
     /**
      * Метод устанавливает студенту статус - обучен или нет.

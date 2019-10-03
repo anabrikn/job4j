@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class TeacherTest {
     @Test
     public void teacherTest() {
-        Teacher teacher = new Teacher("Христиан Вольф");
+        Teacher teacher = new Teacher("Христиан Вольф", "Ктототамович", "хирург", "20.01.1860");
         Student student = new Student("Михаил Ломоносов");
         teacher.teach(student);
 

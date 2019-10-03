@@ -8,6 +8,8 @@ public class Patient {
     public String name;
     private String symptoms;
     private Diagnose diagnose;
+    private int appendicitis = 1;
+    private int teeth = 32;
 
     /**
      * Конструктор
@@ -36,5 +38,19 @@ public class Patient {
         this.symptoms = symptoms;
     }
 
+    public int getAppendicitis() {
+        return appendicitis;
+    }
 
+    public void setAppendicitis(int appendicitis) {
+        this.appendicitis = appendicitis;
+    }
+
+    public int getTeeth() {
+        return teeth;
+    }
+
+    public void setTeeth(int teeth) {
+        this.teeth = teeth;
+    }
 }
