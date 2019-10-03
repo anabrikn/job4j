@@ -7,5 +7,6 @@ public class Dentist extends Doctor {
 
     public void removeTooth(Patient patient) {
         patient.setTeeth(patient.getTeeth() - 1);
+        super.cure(patient);
     }
 }

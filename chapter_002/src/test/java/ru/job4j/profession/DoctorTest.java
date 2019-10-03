@@ -11,10 +11,20 @@ import static org.junit.Assert.assertThat;
  */
 public class DoctorTest {
     @Test
-    public void doctorTest() {
-        Doctor doctor = new Doctor("Кто", "Ктототамович", "хирург", "20.01.1860");
+    public void doctorSurgeonTest() {
+        Surgeon doctor = new Surgeon("Кто", "Ктототамович", "хирург", "20.01.1860");
         Patient patient = new Patient("Чупакабра", "Боль в животе");
-        doctor.cure(patient);
+        doctor.cutAppendicitis(patient);
+
+        String result = patient.getSymptoms();
+        String expect = "I feel good!";
+        assertThat(result, is(expect));
+    }
+    @Test
+    public void doctorTest() {
+        Dentist doctor = new Dentist("Кто", "Ктототамович", "хирург", "20.01.1860");
+        Patient patient = new Patient("Чупакабра", "Боль в зубе");
+        doctor.removeTooth(patient);
 
         String result = patient.getSymptoms();
         String expect = "I feel good!";

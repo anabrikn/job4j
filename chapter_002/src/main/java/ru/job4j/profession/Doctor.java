@@ -29,5 +29,8 @@ public class Doctor extends Profession {
         if (patient.getDiagnose().getPrescription().equals("Животонеболин")) {
             patient.setSymptoms("I feel good!");
         }
+        if (patient.getDiagnose().getPrescription().equals("Зубонеболин")) {
+            patient.setSymptoms("I feel good!");
+        }
     }
 }
