@@ -9,11 +9,7 @@ public class Engineer extends Profession {
         super(name, surname, education, birthday);
     }
 
-    /**
-     * Метод устанавливает зданию статус - построено оно или нет.
-     * @param house здание для проверки построено оно или нет.
-     */
-    public void build(House house) {
-        house.setBuilt(true);
+    public void make() {
+        System.out.println("Работа сделана!");
     }
 }

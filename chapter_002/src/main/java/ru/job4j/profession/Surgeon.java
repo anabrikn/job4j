@@ -6,9 +6,9 @@ public class Surgeon extends Doctor {
     }
 
     public void cutAppendicitis(Patient patient) {
-        if (patient.getAppendicitis() > 0) {
-            patient.setAppendicitis(0);
+        if (patient.getAppendix().isIll()) {
+            super.cure(patient);
+            patient.getAppendix().setIll(false);
         }
-        super.cure(patient);
     }
 }

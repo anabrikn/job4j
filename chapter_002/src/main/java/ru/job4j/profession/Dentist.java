@@ -5,8 +5,12 @@ public class Dentist extends Doctor {
         super(name, surname, education, birthday);
     }
 
-    public void removeTooth(Patient patient) {
-        patient.setTeeth(patient.getTeeth() - 1);
+    public void treatTeeth(Patient patient) {
+        for (int i = 0; i < patient.getTeeth().length; i++) {
+            if (patient.getTeeth()[i].isIll()) {
+                patient.getTeeth()[i].setIll(false);
+            }
+        }
         super.cure(patient);
     }
 }

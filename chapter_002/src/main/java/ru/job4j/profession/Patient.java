@@ -8,17 +8,19 @@ public class Patient {
     public String name;
     private String symptoms;
     private Diagnose diagnose;
-    private int appendicitis = 1;
-    private int teeth = 32;
+    private Appendix appendix;
+    private Tooth[] teeth;
 
     /**
      * Конструктор
      * @param name имя пациента.
      * @param symptoms симптомы, с которыми обращается пациент.
      */
-    public Patient(String name, String symptoms) {
+    public Patient(String name, String symptoms, Appendix appendix, Tooth[] teeth) {
         this.name = name;
         this.symptoms = symptoms;
+        this.appendix = appendix;
+        this.teeth = teeth;
     }
 
 
@@ -38,19 +40,19 @@ public class Patient {
         this.symptoms = symptoms;
     }
 
-    public int getAppendicitis() {
-        return appendicitis;
+    public Appendix getAppendix() {
+        return appendix;
     }
 
-    public void setAppendicitis(int appendicitis) {
-        this.appendicitis = appendicitis;
+    public void setAppendix(Appendix appendix) {
+        this.appendix = appendix;
     }
 
-    public int getTeeth() {
+    public Tooth[] getTeeth() {
         return teeth;
     }
 
-    public void setTeeth(int teeth) {
+    public void setTeeth(Tooth[] teeth) {
         this.teeth = teeth;
     }
 }

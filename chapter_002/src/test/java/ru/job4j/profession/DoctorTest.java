@@ -12,8 +12,12 @@ import static org.junit.Assert.assertThat;
 public class DoctorTest {
     @Test
     public void doctorSurgeonTest() {
+        Tooth[] teeth = new Tooth[32];
+        for (int i = 0; i < 32; i++) {
+            teeth[i] = new Tooth(i + 1, false);
+        }
         Surgeon doctor = new Surgeon("Кто", "Ктототамович", "хирург", "20.01.1860");
-        Patient patient = new Patient("Чупакабра", "Боль в животе");
+        Patient patient = new Patient("Чупакабра", "Боль в животе", new Appendix(true), teeth);
         doctor.cutAppendicitis(patient);
 
         String result = patient.getSymptoms();
@@ -22,9 +26,13 @@ public class DoctorTest {
     }
     @Test
     public void doctorTest() {
-        Dentist doctor = new Dentist("Кто", "Ктототамович", "хирург", "20.01.1860");
-        Patient patient = new Patient("Чупакабра", "Боль в зубе");
-        doctor.removeTooth(patient);
+        Tooth[] teeth = new Tooth[32];
+        for (int i = 0; i < 32; i++) {
+            teeth[i] = new Tooth(i + 1, true);
+        }
+        Dentist doctor = new Dentist("Кто", "Ктототамович", "дантист", "20.01.1860");
+        Patient patient = new Patient("Чупакабра", "Боль в зубе", new Appendix(false), teeth);
+        doctor.treatTeeth(patient);
 
         String result = patient.getSymptoms();
         String expect = "I feel good!";

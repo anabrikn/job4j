@@ -11,13 +11,22 @@ import static org.junit.Assert.assertThat;
  */
 public class EngineerTest {
     @Test
-    public void engineerTest() {
-        Engineer engineer = new Engineer("Гюстав Эйфель", "Ктототамович", "хирург", "20.01.1860");
+    public void engineerBuilderTest() {
+        Builder engineer = new Builder("Гюстав Эйфель", "Ктототамович", "Строитель", "20.01.1860");
         House construction = new House("Эйфелева башня");
         engineer.build(construction);
 
         boolean result = construction.isBuilt();
-        boolean expect = true;
-        assertThat(result, is(expect));
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void engineerProgrammerTest() {
+        Programmer programmer = new Programmer("Билл", "Гейтс", "Программист", "20.01.1860");
+        Program program = new Program("Операционная система");
+        programmer.makeProgramm(program);
+
+        boolean result = program.isMade();
+        assertThat(result, is(true));
     }
 }

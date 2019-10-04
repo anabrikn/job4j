@@ -4,4 +4,12 @@ public class Programmer extends Engineer {
     public Programmer(String name, String surname, String education, String birthday) {
         super(name, surname, education, birthday);
     }
+
+    /**
+     * Метод устанавливает программе статус - написана она или нет.
+     * @param
+     */
+    public void makeProgramm(Program program) {
+        program.setMade(true);
+    }
 }
