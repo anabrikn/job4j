@@ -15,7 +15,14 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        return false;
+        boolean isReplase = false;
+        for (int i = 0; i < items.length; i++) {
+            if (this.items[i].getId().equals(id)) {
+                this.items[i] = item; // ???
+                isReplase = true;
+            }
+        }
+        return isReplase;
     }
 
     public boolean delete(String id) {
