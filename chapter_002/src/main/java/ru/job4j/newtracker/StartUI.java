@@ -1,10 +1,10 @@
 package ru.job4j.newtracker;
-
 import java.util.Scanner;
 
 public class StartUI {
     public void init(Scanner scanner, Tracker tracker) {
         boolean run = true;
+
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
@@ -80,7 +80,6 @@ public class StartUI {
         System.out.println("5. Find items by name");
         System.out.println("6. Exit Program");
     }
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

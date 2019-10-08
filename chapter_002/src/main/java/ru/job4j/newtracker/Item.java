@@ -26,6 +26,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Имя заявки: " + name + " ID заявки: " + id;
+        return "Имя заявки: " + name + "; ID заявки: " + id;
     }
 }

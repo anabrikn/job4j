@@ -12,16 +12,16 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        boolean isReplase = false;
+        boolean isReplace = false;
         for (int i = 0; i != this.position; i++) {
             if (items[i].getId().equals(id)) {
                 item.setId(items[i].getId());
                 items[i] = item;
-                isReplase = true;
+                isReplace = true;
                 break;
             }
         }
-        return isReplase;
+        return isReplace;
     }
 
     public boolean delete(String id) {
