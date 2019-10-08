@@ -23,4 +23,9 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Имя заявки: " + name + " ID заявки: " + id;
+    }
 }
