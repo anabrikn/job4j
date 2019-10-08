@@ -25,22 +25,52 @@ public class Tracker {
     }
 
     public boolean delete(String id) {
-        return false;
+        boolean result = false;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getId().equals(id)) {
+                result = true;
+                System.arraycopy(items, i + 1, items, i, items.length - i - 1);
+                position--;
+                break;
+            }
+        }
+        return result;
     }
 
     public Item[] findAll() {
-        return this.items;
+        Item[] resultArr = new Item[position];
+        for (int i = 0; i != this.position; i++) {
+            resultArr[i] = this.items[i];
+        }
+        return resultArr;
     }
 
     public Item[] findByName(String key) {
-        return this.items;
+        Item[] arr = new Item[position];
+        int k = 0;
+        for (int i = 0; i != this.position; i++) {
+            if (this.items[i].getName().equals(key)) {
+                arr[k] = this.items[i];
+                k++;
+            }
+        }
+        Item[] resultArray = new Item[k];
+        System.arraycopy(arr, 0, resultArray, 0, resultArray.length);
+        return resultArray;
     }
 
     public Item findById(String id) {
-        return items[0];
+        Item result = null;
+        for (Item item : items) {
+            if (item != null && item.getId().equals(id)) {
+                result = item;
+                break;
+            }
+        }
+        return result;
     }
 
     private String generateId() {
-        return String.valueOf(System.currentTimeMillis() + new Random(System.currentTimeMillis()).nextLong());
+        return String.valueOf(System.currentTimeMillis() + new Random().nextLong());
     }
 }
