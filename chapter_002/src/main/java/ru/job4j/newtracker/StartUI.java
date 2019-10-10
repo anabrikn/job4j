@@ -16,10 +16,10 @@ public class StartUI {
         }
     }
 
-    public static void edit(Input input, Tracker tracker) {
+    public static void replace(Input input, Tracker tracker) {
         System.out.println("=== Edit item ====");
-        Item item = new Item(input.askStr("Введите имя заявки:"));
         String id = input.askStr("Введите ID заявки:");
+        Item item = new Item(input.askStr("Введите имя заявки:"));
         if (tracker.replace(id, item)) {
             System.out.println("Заявка отредактирована.");
         } else {
@@ -74,7 +74,7 @@ public class StartUI {
             } else if (select == 1) {
                 StartUI.findAll(input, tracker);
             } else if (select == 2) {
-                StartUI.edit(input, tracker);
+                StartUI.replace(input, tracker);
             } else if (select == 3) {
                 StartUI.delete(input, tracker);
             } else if (select == 4) {
