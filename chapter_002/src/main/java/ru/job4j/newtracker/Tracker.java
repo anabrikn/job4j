@@ -40,7 +40,9 @@ public class Tracker {
     public Item[] findAll() {
         Item[] resultArr = new Item[position];
         for (int i = 0; i != this.position; i++) {
-            resultArr[i] = this.items[i];
+            if (this.items[i] != null) {
+                resultArr[i] = this.items[i];
+            }
         }
         return resultArr;
     }
