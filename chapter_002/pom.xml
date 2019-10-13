@@ -22,10 +22,10 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>tracker</finalName>
+                            <finalName>newtracker</finalName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ru.job4j.tracker.StartUI</mainClass>
+                                    <mainClass>ru.job4j.newtracker.StartUI</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
