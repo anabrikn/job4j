@@ -1,14 +1,14 @@
-package ru.job4j.stragery;
+package ru.job4j.strategy;
 
-public class Triangle implements Shape {
+public class Square implements Shape {
     @Override
     public String draw() {
         return new StringBuilder()
-                .append("   +   ")
+                .append("+++++++")
                 .append("\n")
-                .append("  + +  ")
+                .append("+     +")
                 .append("\n")
-                .append(" +   + ")
+                .append("+     +")
                 .append("\n")
                 .append("+++++++").toString();
     }

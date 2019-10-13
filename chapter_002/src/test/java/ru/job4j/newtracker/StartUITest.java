@@ -1,6 +1,5 @@
-package ru.job4j.newtrackertest;
+package ru.job4j.newtracker;
 
-import ru.job4j.newtracker.*;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

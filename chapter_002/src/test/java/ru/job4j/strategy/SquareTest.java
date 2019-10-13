@@ -1,4 +1,4 @@
-package ru.job4j.stragery;
+package ru.job4j.strategy;
 
 import org.junit.Test;
 
@@ -19,7 +19,8 @@ public class SquareTest {
                                 .append("\n")
                                 .append("+     +")
                                 .append("\n")
-                                .append("+++++++").toString()
+                                .append("+++++++")
+                                .toString()
                 )
         );
     }
