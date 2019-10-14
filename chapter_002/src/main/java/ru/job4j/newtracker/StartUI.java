@@ -1,7 +1,5 @@
 package ru.job4j.newtracker;
 
-import ru.job4j.newtracker.action.CreateAction;
-
 public class StartUI {
 
     public static void createItem(Input input, Tracker tracker) {
