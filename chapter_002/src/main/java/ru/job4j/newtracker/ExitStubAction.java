@@ -1,6 +1,8 @@
 package ru.job4j.newtracker;
 
-public class ExitAction implements UserAction {
+public class ExitStubAction implements UserAction {
+    private boolean call = false;
+
     @Override
     public String name() {
         return "=== Exit Program ====";
@@ -8,6 +10,11 @@ public class ExitAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
+        call = true;
         return false;
+    }
+
+    public boolean isCall() {
+        return call;
     }
 }

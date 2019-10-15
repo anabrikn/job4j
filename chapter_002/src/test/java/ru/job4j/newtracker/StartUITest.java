@@ -1,5 +1,6 @@
 package ru.job4j.newtracker;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,12 +12,34 @@ public class StartUITest {
         StubInput input = new StubInput(
                 new String[] {"0"}
         );
-        StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[] { action });
+        ExitStubAction action = new ExitStubAction();
+        new StartUI().init(input, new Tracker(), new UserAction[]{action});
         assertThat(action.isCall(), is(true));
     }
 
-    /*
+    @Test
+    public void whenCreateItem() {
+        Tracker tracker = new Tracker();
+        Input input = new StubInput(new String[]{"qwe"});
+        new CreateAction().execute(input, tracker);
+        assertThat(tracker.findAll()[0].getName(), is("qwe"));
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("asd");
+        tracker.add(item);
+        String id = tracker.findAll()[0].getId();
+        String[] answers = {id};
+        Input input = new StubInput(answers);
+        new DeleteAction().execute(input, tracker);
+        Item deletedItem = tracker.findById(id);
+        Assert.assertNull(deletedItem);
+    }
+}
+
+/*
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
@@ -74,5 +97,3 @@ public class StartUITest {
         assertNull(tracker.findById(item.getId()));
     }
 */
-}
-
