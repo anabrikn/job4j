@@ -4,13 +4,11 @@ public class StartUI {
 
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
-
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
             UserAction action = actions[select];
             run = action.execute(input, tracker);
-
         }
     }
 
