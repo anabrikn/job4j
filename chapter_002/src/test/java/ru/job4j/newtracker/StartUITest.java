@@ -70,64 +70,63 @@ public class StartUITest {
         System.setOut(stdOut);
     }
 
-    }
-
-
-/*
     @Test
-    public void whenAddItem() {
-        String[] answers = {"Fix PC"};
+    public void whenUserFindItemByName() {
+        PrintStream stdOut = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        Tracker tracker = new Tracker();
+        Item itemFirst = new Item("qwe");
+        tracker.add(itemFirst);
+        String name = tracker.findAll()[0].getName();
+        String[] answers = {name};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
-        Item created = tracker.findAll()[0];
-        Item expected = new Item("Fix PC");
-        assertThat(created.getName(), is(expected.getName()));
+        new FindByNameAction().execute(input, tracker);
+        Assert.assertThat(new String(out.toByteArray()),
+                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"));
+        System.setOut(stdOut);
     }
 
     @Test
-    public void whenAddTwoItem() {
-        String[] answers = {"Fix PC", "Crush PC"};
+    public void whenUserFindTwoItemByName() {
+        PrintStream stdOut = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        Tracker tracker = new Tracker();
+        Item itemFirst = new Item("qwe");
+        Item itemSecond = new Item("qwe");
+        tracker.add(itemFirst);
+        tracker.add(itemSecond);
+        String name = tracker.findAll()[0].getName();
+        String[] answers = {name};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
-        StartUI.createItem(input, tracker);
-        Item created = tracker.findAll()[1];
-        Item expected = new Item("Crush PC");
-        assertThat(created.getName(), is(expected.getName()));
+        new FindByNameAction().execute(input, tracker);
+        Assert.assertThat(new String(out.toByteArray()),
+                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"
+                        + "Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId() + "\r\n"));
+        System.setOut(stdOut);
     }
 
     @Test
-    public void whenReplaceItem() {
+    public void whenUserFindAllItemByName() {
+        PrintStream stdOut = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
         Tracker tracker = new Tracker();
-        Item item = new Item("new item");
-        tracker.add(item);
-        String[] answers = {item.getId(), "replaced item"};
-        StartUI.replace(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(item.getId());
-        assertThat(replaced.getName(), is("replaced item"));
-    }
-
-    @Test
-    public void whenReplaceItemTwoTime() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("new item");
-        tracker.add(item);
-        String[] answers = {item.getId(), "replaced item", item.getId(), "last item"};
+        Item itemFirst = new Item("qwe");
+        Item itemSecond = new Item("asd");
+        Item itemThird = new Item("zxc");
+        tracker.add(itemFirst);
+        tracker.add(itemSecond);
+        tracker.add(itemThird);
+        String name = tracker.findAll()[0].getName();
+        String[] answers = {name};
         Input input = new StubInput(answers);
-        StartUI.replace(input, tracker);
-        StartUI.replace(input, tracker);
-        Item replaced = tracker.findById(item.getId());
-        assertThat(replaced.getName(), is("last item"));
+        new FindAllAction().execute(input, tracker);
+        Assert.assertThat(new String(out.toByteArray()),
+                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"
+                        + "Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId() + "\r\n"
+                        + "Имя заявки: " + itemThird.getName() + "; ID заявки: " + itemThird.getId() + "\r\n"));
+        System.setOut(stdOut);
     }
-
-    @Test
-    public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("new item");
-        tracker.add(item);
-        String[] answers = {item.getId()};
-        StartUI.delete(new StubInput(answers), tracker);
-        assertNull(tracker.findById(item.getId()));
-    }
-*/
+}
