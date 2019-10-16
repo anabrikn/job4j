@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+import org.hamcrest.core.Is;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class StartUITest {
     @Test
@@ -37,7 +40,38 @@ public class StartUITest {
         Item deletedItem = tracker.findById(id);
         Assert.assertNull(deletedItem);
     }
-}
+
+    @Test
+    public void whenItemReplace() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("qwe");
+        tracker.add(item);
+        String id = tracker.findAll()[0].getId();
+        String[] answers = {id, "asd"};
+        new ReplaceAction().execute(new StubInput(answers), tracker);
+        Item replaced = tracker.findById(id);
+        Assert.assertThat(replaced.getName(), Is.is("asd"));
+    }
+
+    @Test
+    public void whenUserFindItemById() {
+        PrintStream stdOut = System.out;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        Tracker tracker = new Tracker();
+        Item itemFirst = new Item("qwe");
+        tracker.add(itemFirst);
+        String id = tracker.findAll()[0].getId();
+        String[] answers = {id};
+        Input input = new StubInput(answers);
+        new FindByIdAction().execute(input, tracker);
+        Assert.assertThat(new String(out.toByteArray()),
+                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"));
+        System.setOut(stdOut);
+    }
+
+    }
+
 
 /*
     @Test

@@ -28,7 +28,7 @@ public class StartUI {
                 new ReplaceAction(),
                 new DeleteAction(),
                 new FindByIdAction(),
-                new FindBuNameAction(),
+                new FindByNameAction(),
                 new ExitStubAction()};
         new StartUI().init(input, tracker, actions);
     }
