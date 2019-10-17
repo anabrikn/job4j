@@ -10,6 +10,7 @@ public class ConsoleInput implements Input {
         return sc.nextLine();
     }
 
+
     @Override
     public int askInt(String question) {
         return Integer.valueOf(askStr(question));
@@ -19,7 +20,7 @@ public class ConsoleInput implements Input {
     public int askInt(String question, int max) {
         int select = askInt(question);
         if (select < 0 || select >= max) {
-            throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
+            throw new IllegalStateException(String.format("Out of about " + select + " > [0, " + max + "]"));
         }
         return select;
     }
