@@ -8,8 +8,27 @@ import static org.junit.Assert.*;
 import org.hamcrest.core.Is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.StringJoiner;
 
 public class StartUITest {
+    @Test
+    public void whenPrtMenu() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream def = System.out;
+        System.setOut(new PrintStream(out));
+        StubInput input = new StubInput(
+                new String[] {"0"}
+        );
+        ExitStubAction action = new ExitStubAction();
+        new StartUI().init(input, new Tracker(), new UserAction[]{action});
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Menu.")
+                .add("0. === Exit Program ====")
+                .toString();
+        assertThat(new String(out.toByteArray()), is(expect));
+        System.setOut(def);
+    }
+
     @Test
     public void whenExit() {
         StubInput input = new StubInput(
@@ -82,8 +101,10 @@ public class StartUITest {
         String[] answers = {name};
         Input input = new StubInput(answers);
         new FindByNameAction().execute(input, tracker);
-        Assert.assertThat(new String(out.toByteArray()),
-                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"));
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId())
+                .toString();
+        Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
         System.setOut(stdOut);
     }
 
@@ -101,9 +122,11 @@ public class StartUITest {
         String[] answers = {name};
         Input input = new StubInput(answers);
         new FindByNameAction().execute(input, tracker);
-        Assert.assertThat(new String(out.toByteArray()),
-                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"
-                        + "Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId() + "\r\n"));
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId())
+                .add("Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId())
+                .toString();
+        Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
         System.setOut(stdOut);
     }
 
@@ -123,10 +146,12 @@ public class StartUITest {
         String[] answers = {name};
         Input input = new StubInput(answers);
         new FindAllAction().execute(input, tracker);
-        Assert.assertThat(new String(out.toByteArray()),
-                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"
-                        + "Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId() + "\r\n"
-                        + "Имя заявки: " + itemThird.getName() + "; ID заявки: " + itemThird.getId() + "\r\n"));
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId())
+                .add("Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId())
+                .add("Имя заявки: " + itemThird.getName() + "; ID заявки: " + itemThird.getId())
+                .toString();
+        Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
         System.setOut(stdOut);
     }
 }
