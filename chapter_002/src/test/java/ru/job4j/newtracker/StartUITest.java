@@ -1,6 +1,8 @@
 package ru.job4j.newtracker;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,11 +13,21 @@ import java.io.PrintStream;
 import java.util.StringJoiner;
 
 public class StartUITest {
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final PrintStream def = System.out;
+
+    @Before
+    public void loadMem() {
+        System.setOut(new PrintStream(out));
+    }
+
+    @After
+    public void loadSys() {
+        System.setOut(def);
+    }
+
     @Test
     public void whenPrtMenu() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream def = System.out;
-        System.setOut(new PrintStream(out));
         StubInput input = new StubInput(
                 new String[] {"0"}
         );
@@ -26,7 +38,6 @@ public class StartUITest {
                 .add("0. === Exit Program ====")
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
-        System.setOut(def);
     }
 
     @Test
@@ -74,9 +85,6 @@ public class StartUITest {
 
     @Test
     public void whenUserFindItemById() {
-        PrintStream stdOut = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Tracker tracker = new Tracker();
         Item itemFirst = new Item("qwe");
         tracker.add(itemFirst);
@@ -86,14 +94,10 @@ public class StartUITest {
         new FindByIdAction().execute(input, tracker);
         Assert.assertThat(new String(out.toByteArray()),
                 Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"));
-        System.setOut(stdOut);
     }
 
     @Test
     public void whenUserFindItemByName() {
-        PrintStream stdOut = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Tracker tracker = new Tracker();
         Item itemFirst = new Item("qwe");
         tracker.add(itemFirst);
@@ -105,14 +109,10 @@ public class StartUITest {
                 .add("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId())
                 .toString();
         Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
-        System.setOut(stdOut);
     }
 
     @Test
     public void whenUserFindTwoItemByName() {
-        PrintStream stdOut = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Tracker tracker = new Tracker();
         Item itemFirst = new Item("qwe");
         Item itemSecond = new Item("qwe");
@@ -127,14 +127,10 @@ public class StartUITest {
                 .add("Имя заявки: " + itemSecond.getName() + "; ID заявки: " + itemSecond.getId())
                 .toString();
         Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
-        System.setOut(stdOut);
     }
 
     @Test
     public void whenUserFindAllItemByName() {
-        PrintStream stdOut = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         Tracker tracker = new Tracker();
         Item itemFirst = new Item("qwe");
         Item itemSecond = new Item("asd");
@@ -152,6 +148,5 @@ public class StartUITest {
                 .add("Имя заявки: " + itemThird.getName() + "; ID заявки: " + itemThird.getId())
                 .toString();
         Assert.assertThat(new String(out.toByteArray()), Is.is(expect));
-        System.setOut(stdOut);
     }
 }
