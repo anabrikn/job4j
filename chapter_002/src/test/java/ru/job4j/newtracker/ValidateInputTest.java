@@ -34,7 +34,6 @@ public class ValidateInputTest {
         assertThat(new String(out.toByteArray()), is(expect));
     }
 
-    /*
     @Test
     public void whenInvalidRangeInput() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -49,5 +48,4 @@ public class ValidateInputTest {
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);
     }
-     */
 }
