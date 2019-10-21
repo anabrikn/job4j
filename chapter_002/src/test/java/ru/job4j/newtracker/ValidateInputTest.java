@@ -26,26 +26,23 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "1"}));
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "0"}));
         input.askInt("Enter", 1);
         String expect = new StringJoiner(System.lineSeparator())
                 .add("Пожалуйста, введите корректные данные\r\n")
                 .toString();
-        assertThat(new String(out.toByteArray()), is(expect));
+        assertThat(out.toString(), is(expect));
     }
+
 
     @Test
     public void whenInvalidRangeInput() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream def = System.out;
-        System.setOut(new PrintStream(out));
-        StubInput stubInput = new StubInput(new String[] {"10", "1"});
+        StubInput stubInput = new StubInput(new String[] {"10", "0"});
         ValidateInput input = new ValidateInput(stubInput);
         input.askInt("Enter", 1);
         String expect = new StringJoiner(System.lineSeparator())
                 .add("Пожалуйста, введите ключ из меню\r\n")
                 .toString();
-        assertThat(new String(out.toByteArray()), is(expect));
-        System.setOut(def);
+        assertThat(out.toString(), is(expect));
     }
 }
