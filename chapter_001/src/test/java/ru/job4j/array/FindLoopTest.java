@@ -51,7 +51,7 @@ public class FindLoopTest {
     }
 
     @Test
-    public void whenFind3() {
+    public void whenFind3element() {
         int[] input = new int[] {5, 2, 10, 2, 4};
         int value = 2;
         int start = 2;
@@ -62,7 +62,7 @@ public class FindLoopTest {
     }
 
     @Test
-    public void whenFind1() {
+    public void whenFindMissingElement() {
         int[] input = new int[] {5, 2, 10, 2, 4};
         int value = 11;
         int start = 2;
