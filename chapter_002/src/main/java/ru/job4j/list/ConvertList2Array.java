@@ -7,15 +7,12 @@ public class ConvertList2Array {
         int cells = (int) Math.ceil((double) list.size() / rows);
         int[][] array = new int[rows][cells];
         int index = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int[] elements: array) {
             for (int j = 0; j < cells; j++) {
-                if (index < list.size()) {
-                    array[i][j] = list.get(index);
-                    index++;
-                } else {
-                    array[i][j] = 0;
-                }
+                elements[j] = index < list.size() ? list.get(index) : 0;
+                index++;
             }
+
         }
         return array;
     }
