@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 import org.hamcrest.core.Is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.StringJoiner;
 
 public class StartUITest {
@@ -32,7 +33,9 @@ public class StartUITest {
                 new String[] {"0"}
         );
         ExitStubAction action = new ExitStubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[]{action});
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(action);
+        new StartUI().init(input, new Tracker(), actions);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
                 .add("0. === Exit Program ====")
@@ -46,7 +49,9 @@ public class StartUITest {
                 new String[] {"0"}
         );
         ExitStubAction action = new ExitStubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[]{action});
+        ArrayList<UserAction> actions = new ArrayList<>();
+        actions.add(action);
+        new StartUI().init(input, new Tracker(), actions);
         assertThat(action.isCall(), is(true));
     }
 

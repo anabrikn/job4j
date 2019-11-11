@@ -77,7 +77,7 @@ public class Tracker {
          */
     }
 
-    public Item[] findByName(String key) {
+    public ArrayList<Item> findByName(String key) {
         ArrayList<Item> arrayList = new ArrayList<>();
         for (ListIterator<Item> iterator = items.listIterator(); iterator.hasNext();) {
             Item itemForFind = iterator.next();
@@ -85,8 +85,11 @@ public class Tracker {
                 arrayList.add(itemForFind);
             }
         }
-        return arrayList.toArray(new Item[arrayList.size()]);
+        return arrayList;
         /*
+        public Item[] findByName(String key)
+        return arrayList.toArray(new Item[arrayList.size()])
+
         Item[] arr = new Item[position];
         int k = 0;
         for (int i = 0; i != this.position; i++) {
