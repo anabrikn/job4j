@@ -5,11 +5,10 @@ import java.util.Random;
 
 public class Tracker {
     private final ArrayList<Item> items = new ArrayList<>(100);
-    private int position = 0;
 
     public Item add(Item item) {
         item.setId(this.generateId());
-        items.add(position++, item);
+        items.add(item);
         return item;
     }
 
