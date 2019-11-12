@@ -22,17 +22,4 @@ public class FindByNameAction implements UserAction {
         }
         return true;
     }
-    /*
-    String name = input.askStr("Введите имя заявки:");
-
-        Item[] foundItem = tracker.findByName(name);
-        if (foundItem.length != 0) {
-            for (Item e: foundItem) {
-                System.out.println(e.toString());
-            }
-        } else {
-            System.out.println("Заявок с таким именем нет в списке.");
-        }
-        return true;
-     */
 }

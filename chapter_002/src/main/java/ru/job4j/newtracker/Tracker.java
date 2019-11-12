@@ -25,55 +25,24 @@ public class Tracker {
             }
         }
         return isReplace;
-        /*
-        boolean isReplace = false;
-        for (int i = 0; i != this.position; i++) {
-            if (items[i].getId().equals(id)) {
-                item.setId(items[i].getId());
-                items[i] = item;
-                isReplace = true;
-                break;
-            }
-        }
-         */
     }
 
     public boolean delete(String id) {
         boolean result = false;
-        for (ListIterator<Item> iterator = items.listIterator(); iterator.hasNext();) {
+        int i = 0;
+        for (ListIterator<Item> iterator = items.listIterator(); iterator.hasNext(); i++) {
             Item itemForDelete = iterator.next();
             if (itemForDelete.getId().equals(id)) {
                 result = true;
-                items.remove(itemForDelete);
+                items.remove(i);
                 break;
             }
         }
         return result;
-        /*
-        boolean result = false;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equals(id)) {
-                result = true;
-                System.arraycopy(items, i + 1, items, i, items.length - i - 1);
-                position--;
-                break;
-            }
-        }
-        return result;
-         */
     }
 
     public Item[] findAll() {
         return items.toArray(new Item[items.size()]);
-        /*
-        Item[] resultArr = new Item[position];
-        for (int i = 0; i != this.position; i++) {
-            if (this.items[i] != null) {
-                resultArr[i] = this.items[i];
-            }
-        }
-        return resultArr;
-         */
     }
 
     public ArrayList<Item> findByName(String key) {
@@ -85,22 +54,6 @@ public class Tracker {
             }
         }
         return arrayList;
-        /*
-        public Item[] findByName(String key)
-        return arrayList.toArray(new Item[arrayList.size()])
-
-        Item[] arr = new Item[position];
-        int k = 0;
-        for (int i = 0; i != this.position; i++) {
-            if (this.items[i].getName().equals(key)) {
-                arr[k] = this.items[i];
-                k++;
-            }
-        }
-        Item[] resultArray = new Item[k];
-        System.arraycopy(arr, 0, resultArray, 0, resultArray.length);
-        return resultArray;
-         */
     }
 
     public Item findById(String id) {

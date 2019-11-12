@@ -10,7 +10,6 @@ public class StartUI {
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", actions.size());
-            //UserAction action = actions[select];
             run = actions.get(select).execute(input, tracker);
         }
     }
@@ -21,12 +20,6 @@ public class StartUI {
         for (ListIterator<UserAction> iterator = actions.listIterator(); iterator.hasNext(); index++) {
             System.out.println(index + ". " + iterator.next().name());
         }
-        /*
-        System.out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
-            System.out.println(index + ". " + actions[index].name());
-        }
-         */
     }
 
     public static void main(String[] args) {
@@ -42,14 +35,6 @@ public class StartUI {
         actions.add(new FindByIdAction());
         actions.add(new FindByNameAction());
         actions.add(new ExitStubAction());
-        UserAction[] actions1 = {
-                new CreateAction(),
-                new FindAllAction(),
-                new ReplaceAction(),
-                new DeleteAction(),
-                new FindByIdAction(),
-                new FindByNameAction(),
-                new ExitStubAction()};
         new StartUI().init(validate, tracker, actions);
     }
 }
