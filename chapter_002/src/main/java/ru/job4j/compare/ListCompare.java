@@ -10,7 +10,7 @@ public class ListCompare implements Comparator<String> {
         char[] leftArr = left.toCharArray();
         char[] rightArr = right.toCharArray();
 
-        int min = left.length() < right.length() ? left.length() : right.length();
+        int min = Math.min(left.length(), right.length());
 
         for (int i = 0; i < min; i++) {
             if (leftArr[i] != rightArr[i]) {
@@ -23,5 +23,11 @@ public class ListCompare implements Comparator<String> {
         }
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        String a = "abc";
+        String b = "abcdefgh";
+        System.out.println(a.compareTo(b));
     }
 }
