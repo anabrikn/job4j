@@ -98,7 +98,7 @@ public class StartUITest {
         Input input = new StubInput(answers);
         new FindByIdAction().execute(input, tracker);
         Assert.assertThat(new String(out.toByteArray()),
-                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + "\r\n"));
+                Is.is("Имя заявки: " + itemFirst.getName() + "; ID заявки: " + itemFirst.getId() + System.lineSeparator()));
     }
 
     @Test

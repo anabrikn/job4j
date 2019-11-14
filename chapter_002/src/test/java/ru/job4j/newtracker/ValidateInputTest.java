@@ -29,7 +29,7 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(new StubInput(new String[] {"invalid", "0"}));
         input.askInt("Enter", 1);
         String expect = new StringJoiner(System.lineSeparator())
-                .add("Пожалуйста, введите корректные данные\r\n")
+                .add("Пожалуйста, введите корректные данные" + System.lineSeparator())
                 .toString();
         assertThat(out.toString(), is(expect));
     }
@@ -41,7 +41,7 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(stubInput);
         input.askInt("Enter", 1);
         String expect = new StringJoiner(System.lineSeparator())
-                .add("Пожалуйста, введите ключ из меню\r\n")
+                .add("Пожалуйста, введите ключ из меню" + System.lineSeparator())
                 .toString();
         assertThat(out.toString(), is(expect));
     }
