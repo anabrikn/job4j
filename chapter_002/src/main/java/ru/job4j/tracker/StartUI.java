@@ -32,7 +32,7 @@ public class StartUI {
         }
         menu.fillActions();
         do {
-            System.out.println("Меню.");
+            System.out.print("Меню." + System.lineSeparator());
             menu.show();
             menu.select(input.ask("select:", ranges)); //
         } while (!"y".equals(this.input.ask("Exit?(y): ")));

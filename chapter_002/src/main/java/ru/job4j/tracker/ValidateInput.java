@@ -24,9 +24,9 @@ public class ValidateInput implements Input {
                 value = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
-                System.out.println("Введите ключ из диапазона");
+                System.out.print("Введите ключ из диапазона" + System.lineSeparator());
             } catch (NumberFormatException nfe) {
-                System.out.println("Введите корректные данные");
+                System.out.print("Введите корректные данные" + System.lineSeparator());
             }
         } while (invalid);
         return value;

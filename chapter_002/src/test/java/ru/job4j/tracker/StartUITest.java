@@ -41,7 +41,7 @@ public class StartUITest {
 
     @Before
     public void beforeTest() {
-        System.out.println("execute before method");
+        System.out.print("execute before method" + System.lineSeparator());
         tracker = new Tracker(); // создаём Tracker
         System.setOut(new PrintStream(this.out));
     }
@@ -49,7 +49,7 @@ public class StartUITest {
     @After
     public void afterTest() {
         System.setOut(this.stdout);
-        System.out.println("execute after method");
+        System.out.print("execute after method" + System.lineSeparator());
     }
 
     @Test

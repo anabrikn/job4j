@@ -15,7 +15,7 @@ public class StartUI {
     }
 
     private void showMenu(ArrayList<UserAction> actions) {
-        System.out.println("Menu.");
+        System.out.print("Menu." + System.lineSeparator());
         int index = 0;
         for (ListIterator<UserAction> iterator = actions.listIterator(); iterator.hasNext(); index++) {
             System.out.println(index + ". " + iterator.next().name());

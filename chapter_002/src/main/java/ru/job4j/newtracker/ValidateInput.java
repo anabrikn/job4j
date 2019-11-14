@@ -21,7 +21,7 @@ public class ValidateInput implements Input {
                 value = input.askInt(question);
                 invalid = false;
             } catch (NumberFormatException nfe) {
-                System.out.println("Пожалуйста, введите корректные данные");
+                System.out.print("Пожалуйста, введите корректные данные" + System.lineSeparator());
             }
         } while (invalid);
         return value;
@@ -36,9 +36,9 @@ public class ValidateInput implements Input {
                 value = input.askInt(question, max);
                 invalid = false;
             } catch (IllegalStateException moe) {
-                System.out.println("Пожалуйста, введите ключ из меню");
+                System.out.print("Пожалуйста, введите ключ из меню" + System.lineSeparator());
             } catch (NumberFormatException nfe) {
-                System.out.println("Пожалуйста, введите корректные данные");
+                System.out.print("Пожалуйста, введите корректные данные" + System.lineSeparator());
             }
         } while (invalid);
         return value;
