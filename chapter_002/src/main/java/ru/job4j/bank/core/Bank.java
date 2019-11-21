@@ -13,57 +13,49 @@ import java.util.TreeMap;
 public class Bank {
     private TreeMap<User, ArrayList<Account>> bank = new TreeMap<>();
 
-    public TreeMap<User, ArrayList<Account>> getBankData() {
+    public TreeMap<User, ArrayList<Account>> getBankData() { // сделать private
         return bank;
     }
 
     public void addUser(User user) throws ContainsException {
-        if (user != null && !bank.containsKey(user)) {
-            this.bank.put(user, new ArrayList<Account>());
-        } else {
-            throw new ContainsException("Такой пользователь уже есть в базе или переданы некорректные данные.");
+        if (user == null) {
+            throw new ContainsException("Переданы некорректные данные.");
         }
+        this.bank.putIfAbsent(user, new ArrayList<Account>());
     }
 
     public void deleteUser(User user) throws ContainsException {
-        if (user != null && bank.containsKey(user)) {
-            this.bank.remove(user);
-        } else {
+        if (!bank.containsKey(user)) {
             throw new ContainsException("Такого пользователя нет в базе или переданы некорректные данные.");
         }
+        this.bank.remove(user);
     }
 
     public void addAccountToUser(String passport, Account account) {
         User user = findUserByPassport(passport);
-        if (user != null && account != null) {
-            bank.get(user).add(account);
-        } else {
+        if (user == null || account == null) {
             throw new ContainsException("Такого пользователя нет в базе или переданы некорректные данные аккаунта.");
         }
+        bank.get(user).add(account);
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
         User user = findUserByPassport(passport);
-        if (user != null && account != null) {
-            bank.get(user).remove(account);
-        } else {
+        if (user == null || account == null) {
             throw new ContainsException("Такого пользователя нет в базе или переданы некорректные данные аккаунта.");
         }
+        bank.get(user).remove(account);
     }
 
     public List<Account> getUserAccounts(String passport) throws ContainsException {
         User user = findUserByPassport(passport);
-        ArrayList<Account> list;
-        if (user != null && bank.get(user) != null) {
-            list = bank.get(user);
-        } else {
-            list = new ArrayList<>();
-            throw new ContainsException("Все пропало!");
+        if (bank.get(user) == null) {
+            return new ArrayList<>();
         }
-        return list;
+        return bank.get(user);
     }
 
-    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) throws TransferException {
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
         User user1 = findUserByPassport(srcPassport);
         User user2 = findUserByPassport(destPassport);
