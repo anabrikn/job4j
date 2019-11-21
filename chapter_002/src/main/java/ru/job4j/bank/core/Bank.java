@@ -13,8 +13,17 @@ import java.util.TreeMap;
 public class Bank {
     private TreeMap<User, ArrayList<Account>> bank = new TreeMap<>();
 
-    public TreeMap<User, ArrayList<Account>> getBankData() { // сделать private
-        return bank;
+    public boolean isUserContain(User user) {
+        return bank.containsKey(user);
+    }
+
+    public boolean isAccountContain(User user, String req) {
+        Account account = findAccountByUserAndRequisite(user, req);
+        boolean result = false;
+        if (account != null) {
+            result = true;
+        }
+        return result;
     }
 
     public void addUser(User user) throws ContainsException {
@@ -61,7 +70,7 @@ public class Bank {
         User user2 = findUserByPassport(destPassport);
         Account account1 = findAccountByUserAndRequisite(user1, srcRequisite);
         Account account2 = findAccountByUserAndRequisite(user2, dstRequisite);
-        if (account1.getValue() > amount) {
+        if (account1.getValue() >= amount) {
             account1.setValue(account1.getValue() - amount);
             account2.setValue(account2.getValue() + amount);
             result = true;
@@ -109,13 +118,7 @@ public class Bank {
                     a = array;
                 }
             }
-            if (a != null) {
-                return a;
-            } else {
-                throw new ContainsException("Такого аккаунта не существует или переданы некорректные данные.");
-            }
-        } else {
-            throw new ContainsException("Такого аккаунта не существует или он не пренадлежит этому юзеру.");
         }
+        return a;
     }
 }
