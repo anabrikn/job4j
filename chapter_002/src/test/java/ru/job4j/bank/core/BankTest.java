@@ -29,7 +29,7 @@ public class BankTest {
         bank.addUser(new User("Ava", "57575757"));
         String requisites = "12344321";
         bank.addAccountToUser("57575757", new Account(100, requisites));
-        assertTrue(bank.isAccountContain(new User("Ava", "57575757"), requisites));
+        assertTrue(bank.isAccountContain("57575757", requisites));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class BankTest {
         bank.addAccountToUser("57575757", acc2);
         bank.addAccountToUser("57575757", acc3);
         bank.deleteAccountFromUser("57575757", new Account(1000, "43211234"));
-        assertFalse(bank.isAccountContain(new User("Ava", "57575757"), "43211234"));
+        assertFalse(bank.isAccountContain("57575757", "43211234"));
     }
 
     @Test

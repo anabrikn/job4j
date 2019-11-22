@@ -27,6 +27,16 @@ public class Account {
         this.requisites = requisites;
     }
 
+    public boolean transferTo(Account destAcc, double amount) {
+        boolean result = false;
+        if (this.getValue() >= amount) {
+            this.setValue(this.getValue() - amount);
+            destAcc.setValue(destAcc.getValue() + amount);
+            result = true;
+        }
+        return result;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

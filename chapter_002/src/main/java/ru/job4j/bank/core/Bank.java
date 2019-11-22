@@ -1,7 +1,6 @@
 package ru.job4j.bank.core;
 
 import ru.job4j.bank.exceptions.ContainsException;
-import ru.job4j.bank.exceptions.TransferException;
 import ru.job4j.bank.parts.Account;
 import ru.job4j.bank.parts.User;
 
@@ -17,8 +16,8 @@ public class Bank {
         return bank.containsKey(user);
     }
 
-    public boolean isAccountContain(User user, String req) {
-        Account account = findAccountByUserAndRequisite(user, req);
+    public boolean isAccountContain(String pass, String req) {
+        Account account = findAccountByPassportAndRequisite(pass, req);
         boolean result = false;
         if (account != null) {
             result = true;
@@ -66,34 +65,39 @@ public class Bank {
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        User user1 = findUserByPassport(srcPassport);
-        User user2 = findUserByPassport(destPassport);
-        Account account1 = findAccountByUserAndRequisite(user1, srcRequisite);
-        Account account2 = findAccountByUserAndRequisite(user2, dstRequisite);
-        if (account1.getValue() >= amount) {
-            account1.setValue(account1.getValue() - amount);
-            account2.setValue(account2.getValue() + amount);
-            result = true;
+        Account account1 = findAccountByPassportAndRequisite(srcPassport, srcRequisite);
+        Account account2 = findAccountByPassportAndRequisite(destPassport, dstRequisite);
+        if (account1 != null && account2 != null) {
+            result = account1.transferTo(account2, amount);
         }
         return result;
     }
 
-    private User findUserByPassport(String pass) throws ContainsException {
+    private Account findAccountByPassportAndRequisite(String pass, String requisite) {
+        User u = findUserByPassport(pass);
+        Account a = null;
+        if (bank.containsKey(u)) {
+            for (Account array : bank.get(u)) {
+                if (array.getRequisites().equals(requisite)) {
+                    a = array;
+                    break;
+                }
+            }
+        }
+        return a;
+    }
+
+    private User findUserByPassport(String pass) {
         User u = null;
         for (Map.Entry<User, ArrayList<Account>> entry : bank.entrySet()) {
             if (entry.getKey().getPassport().equals(pass)) {
                 u = entry.getKey();
             }
         }
-        if (u != null) {
-            return u;
-        } else {
-            throw new ContainsException("Такого пользователя нет в базе или переданы некорректные данные.");
-        }
-
+        return u;
     }
 
-    private Account findAccountByRequisit(String req) throws ContainsException {
+    private Account findAccountByRequisite(String req) throws ContainsException {
         Account a = null;
         for (Map.Entry<User, ArrayList<Account>> entry : bank.entrySet()) {
             for (Account account: entry.getValue()) {
@@ -108,17 +112,5 @@ public class Bank {
         } else {
             throw new ContainsException("Такого аккаунта не существует или переданы некорректные данные.");
         }
-    }
-
-    private Account findAccountByUserAndRequisite(User usr, String req) throws ContainsException {
-        Account a = null;
-        if (bank.containsKey(usr)) {
-            for (Account array : bank.get(usr)) {
-                if (array.getRequisites().equals(req)) {
-                    a = array;
-                }
-            }
-        }
-        return a;
     }
 }
