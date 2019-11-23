@@ -29,9 +29,9 @@ public class Account {
 
     public boolean transferTo(Account destAcc, double amount) {
         boolean result = false;
-        if (this.getValue() >= amount) {
-            this.setValue(this.getValue() - amount);
-            destAcc.setValue(destAcc.getValue() + amount);
+        if (this.value >= amount) {
+            this.value = this.value - amount;
+            destAcc.value = destAcc.value + amount;
             result = true;
         }
         return result;

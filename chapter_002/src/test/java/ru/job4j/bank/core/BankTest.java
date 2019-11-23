@@ -5,6 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
 import ru.job4j.bank.parts.Account;
 import ru.job4j.bank.parts.User;
 
