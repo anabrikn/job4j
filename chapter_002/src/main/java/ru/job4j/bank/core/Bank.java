@@ -25,14 +25,14 @@ public class Bank {
         return result;
     }
 
-    public void addUser(User user) throws ContainsException {
+    public void addUser(User user) {
         if (user == null) {
             throw new ContainsException("Переданы некорректные данные.");
         }
         this.bank.putIfAbsent(user, new ArrayList<Account>());
     }
 
-    public void deleteUser(User user) throws ContainsException {
+    public void deleteUser(User user) {
         if (!bank.containsKey(user)) {
             throw new ContainsException("Такого пользователя нет в базе или переданы некорректные данные.");
         }
@@ -55,7 +55,7 @@ public class Bank {
         bank.get(user).remove(account);
     }
 
-    public List<Account> getUserAccounts(String passport) throws ContainsException {
+    public List<Account> getUserAccounts(String passport) {
         User user = findUserByPassport(passport);
         if (bank.get(user) == null) {
             return new ArrayList<>();
