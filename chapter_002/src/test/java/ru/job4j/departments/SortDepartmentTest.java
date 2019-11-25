@@ -3,7 +3,6 @@ package ru.job4j.departments;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
 import java.util.Collections;
 import java.util.StringJoiner;
 import java.util.TreeSet;
