@@ -19,6 +19,7 @@ public class Tracker {
             Item itemForReplace = iterator.next();
             if (itemForReplace.getId().equals(id)) {
                 item.setId(itemForReplace.getId());
+                items.remove(itemForReplace);
                 items.add(i, item);
                 isReplace = true;
                 break;

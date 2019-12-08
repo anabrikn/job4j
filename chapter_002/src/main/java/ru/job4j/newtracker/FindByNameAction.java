@@ -1,6 +1,7 @@
 package ru.job4j.newtracker;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class FindByNameAction implements UserAction {
     @Override
@@ -9,16 +10,16 @@ public class FindByNameAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         String name = input.askStr("Введите имя заявки:");
 
         ArrayList<Item> foundItem = tracker.findByName(name);
         if (foundItem.size() != 0) {
             for (Item e: foundItem) {
-                System.out.println(e.toString());
+                output.accept(e.toString());
             }
         } else {
-            System.out.println("Заявок с таким именем нет в списке.");
+            output.accept("Заявок с таким именем нет в списке.");
         }
         return true;
     }

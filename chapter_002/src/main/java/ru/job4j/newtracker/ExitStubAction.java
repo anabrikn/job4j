@@ -1,5 +1,7 @@
 package ru.job4j.newtracker;
 
+import java.util.function.Consumer;
+
 public class ExitStubAction implements UserAction {
     private boolean call = false;
 
@@ -9,7 +11,7 @@ public class ExitStubAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         call = true;
         return false;
     }
