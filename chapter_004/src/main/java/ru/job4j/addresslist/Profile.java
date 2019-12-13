@@ -3,6 +3,10 @@ package ru.job4j.addresslist;
 public class Profile {
     private Address address;
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public Profile(String city, String street, int home, int apartment) {
         this.address = new Address(city, street, home, apartment);
 
