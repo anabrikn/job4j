@@ -1,9 +1,8 @@
 package ru.job4j.studentfiltering;
 
-import java.util.Comparator;
 import java.util.Objects;
 
-public class Student implements Comparator<Student> {
+public class Student implements Comparable<Student> {
     private int score;
     private String surname;
 
@@ -21,6 +20,7 @@ public class Student implements Comparator<Student> {
     }
 
 
+    /*
     @Override
     public int compare(Student student, Student anotherStudent) {
         if (student.getScore() > anotherStudent.getScore()) {
@@ -31,6 +31,7 @@ public class Student implements Comparator<Student> {
         return 0;
 
     }
+     */
 
     @Override
     public boolean equals(Object o) {
@@ -53,5 +54,17 @@ public class Student implements Comparator<Student> {
     @Override
     public String toString() {
         return "Student{" + "score=" + score + '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        if (this.getScore() == o.getScore()) {
+            return 0;
+        } else  if (this.getScore() < o.getScore()) {
+            return 1;
+        } else {
+            return -1;
+        }
+
     }
 }

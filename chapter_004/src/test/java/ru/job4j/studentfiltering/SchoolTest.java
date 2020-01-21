@@ -132,4 +132,30 @@ public class SchoolTest {
         Map<String, Student> result = lm.collectConvertToMap(students, i -> i.getScore() >= 70 && i.getScore() < 100);
         assertThat(result, is(expected));
     }
+
+    @Test
+    public void whenLevelOfTest() {
+        Student student1 = new Student("Королев", 99);
+        Student student2 = new Student("Самоваров", 11);
+        Student student3 = new Student("Астанина", 88);
+        Student student4 = new Student("Галушко", 22);
+        Student student5 = new Student("Поляков", 77);
+        Student student6 = new Student("Шкипер", 33);
+        Student student7 = new Student("Самоваров", 66);
+        Student student8 = new Student("Архипова", 44);
+        Student student9 = new Student("Галушко", 55);
+
+        List<Student> students = Arrays.asList(
+                student1, student2, student3,
+                null,
+                student4, student5, student6,
+                null,
+                student7, student8, student9
+        );
+
+        School sc = new School();
+        List<Student> result = sc.levelOf(students, 70);
+        List<Student> expected = Arrays.asList(student1, student3, student5);
+        assertThat(result, is(expected));
+    }
 }
