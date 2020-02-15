@@ -12,16 +12,3 @@ public class UniqueText {
         return rsl;
     }
 }
-/*
-        allMatch(Predicate predicate) — возвращает true, если все элементы стрима удовлетворяют условию.
-        Если встречается какой-либо элемент, для которого результат вызова функции-предиката будет false,
-        то оператор перестаёт просматривать элементы и возвращает false
-        for (String e : text) {
-            if (!check.contains(e)) {
-                rsl = false;
-                break;
-            }
-        }
-        // for-each origin -> new HashSet.
-        // for-each text -> hashSet.contains
-        */

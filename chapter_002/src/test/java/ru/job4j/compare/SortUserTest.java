@@ -52,5 +52,4 @@ public class SortUserTest {
         assertThat(iterator.next(), is(user2));
         assertThat(iterator.next(), is(user4));
     }
-
 }

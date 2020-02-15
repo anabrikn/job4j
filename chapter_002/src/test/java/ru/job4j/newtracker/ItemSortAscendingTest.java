@@ -20,6 +20,5 @@ public class ItemSortAscendingTest {
         List<Item> items = Arrays.asList(fifth, first, third);
         items.sort(new ItemSortAscending());
         assertThat(items, is(List.of(first, third, fifth)));
-
     }
 }

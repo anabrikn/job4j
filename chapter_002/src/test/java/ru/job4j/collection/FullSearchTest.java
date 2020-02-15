@@ -19,6 +19,3 @@ public class FullSearchTest {
         assertThat(FullSearch.extractNumber(tasks), is(expected));
     }
 }
-/*
-[#212653]
- */
