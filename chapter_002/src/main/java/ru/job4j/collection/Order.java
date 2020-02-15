@@ -17,11 +17,15 @@ public class Order {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Order)) {
+            return false;
+        }
         Order order = (Order) o;
-        return getNumber().equals(order.getNumber()) &&
-                name.equals(order.name);
+        return getNumber().equals(order.getNumber())
+                && name.equals(order.name);
     }
 
     @Override
@@ -31,9 +35,13 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "Order{"
+                + "number='"
+                + number
+                + '\''
+                + ", name='"
+                + name
+                + '\''
+                + '}';
     }
 }
