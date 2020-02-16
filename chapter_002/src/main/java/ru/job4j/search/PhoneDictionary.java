@@ -2,11 +2,11 @@ package ru.job4j.search;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 
 public class PhoneDictionary {
-    private List<Person> persons = new ArrayList<Person>();
+    private List<Person> persons = new ArrayList<>();
 
     public void add(Person person) {
         this.persons.add(person);
@@ -18,27 +18,26 @@ public class PhoneDictionary {
      * @return Список подошедщих пользователей.
      */
     public List<Person> find(String key) {
-
-        List<Person> result = persons.stream()
-                .flatMap(Stream::ofNullable)
-                .filter(person -> person.getName().contains(key)
-                        || person.getSurname().contains(key)
-                        || person.getAddress().contains(key)
-                        || person.getPhone().contains(key))
-                .collect(Collectors.toList());
-        return result;
-    }
-}
-/*List<Person> resultQ = new ArrayList<>();
-        for (int i = 0; i < persons.size(); i++) {
-            Person person = persons.get(i);
+        List<Person> result = new ArrayList<>();
+        for (var i = 0; i < persons.size(); i++) {
+            var person = persons.get(i);
             String[] data = {person.getName(), person.getSurname(), person.getPhone(), person.getAddress()};
-            for (int j = 0; j < data.length; j++) {
+            for (var j = 0; j < data.length; j++) {
                 if (data[i].contains(key)) {
                     result.add(person);
                     break;
                 }
             }
         }
-
+        return result;
+    }
+}
+/*
+List<Person> result = persons.stream()
+                .flatMap(Stream::ofNullable)
+                .filter(person -> person.getName().contains(key)
+                        || person.getSurname().contains(key)
+                        || person.getAddress().contains(key)
+                        || person.getPhone().contains(key))
+                .collect(Collectors.toList());
          */

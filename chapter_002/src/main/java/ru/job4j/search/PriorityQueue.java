@@ -13,11 +13,11 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int i = 0;
-        boolean isAdd = false;
+        var i = 0;
+        var isAdd = false;
         if (!tasks.isEmpty()) {
             for (ListIterator<Task> iterator = tasks.listIterator(); iterator.hasNext(); i++) {
-                Task t = iterator.next();
+                var t = iterator.next();
                 if (task.getPriority() < t.getPriority()) {
                     tasks.add(i, task);
                     isAdd = true;
