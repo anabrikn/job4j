@@ -2,8 +2,8 @@ package ru.job4j.search;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.stream.Collectors;
-//import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PhoneDictionary {
     private List<Person> persons = new ArrayList<>();
@@ -18,7 +18,17 @@ public class PhoneDictionary {
      * @return Список подошедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
+        return persons.stream()
+                .flatMap(Stream::ofNullable)
+                .filter(person -> person.getName().contains(key)
+                        || person.getSurname().contains(key)
+                        || person.getAddress().contains(key)
+                        || person.getPhone().contains(key))
+                .collect(Collectors.toList());
+    }
+}
+/*
+List<Person> result = new ArrayList<>();
         for (var i = 0; i < persons.size(); i++) {
             var person = persons.get(i);
             String[] data = {person.getName(), person.getSurname(), person.getPhone(), person.getAddress()};
@@ -30,14 +40,4 @@ public class PhoneDictionary {
             }
         }
         return result;
-    }
-}
-/*
-List<Person> result = persons.stream()
-                .flatMap(Stream::ofNullable)
-                .filter(person -> person.getName().contains(key)
-                        || person.getSurname().contains(key)
-                        || person.getAddress().contains(key)
-                        || person.getPhone().contains(key))
-                .collect(Collectors.toList());
-         */
+*/

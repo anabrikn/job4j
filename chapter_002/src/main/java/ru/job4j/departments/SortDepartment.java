@@ -20,7 +20,7 @@ public class SortDepartment {
         return tree;
     }
 
-    public void fillTree(String d, TreeSet treeSet) {
+    public void fillTree(String d, TreeSet<String> treeSet) {
         String symbol = "/";
         treeSet.add(d);
         if (d.contains(symbol)) {
